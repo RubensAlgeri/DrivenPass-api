@@ -17,3 +17,15 @@ export async function checkTitle(title:string, id:number) {
 
     if(check)throw{type:409, message:"Title already used."}
 }
+
+export async function getUserCards(id:number) {
+
+    const cards = await cardRepository.getUserCards(id)
+    return cards
+}
+
+export async function getCard(cardId:number,id:number) {
+
+    const cards = await cardRepository.getCard(cardId, id)
+    return cards
+}
