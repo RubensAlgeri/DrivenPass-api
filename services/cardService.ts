@@ -1,6 +1,6 @@
 import * as cardRepository from "../repositories/cardRepository.js";
 import { Card } from "@prisma/client";
-
+import { decrypt } from "../utils/decrypt.js";
 import Cryptr from 'cryptr';
 const cryptr = new Cryptr(process.env.SECRET_KEY);
 
@@ -21,14 +21,17 @@ export async function checkTitle(title:string, id:number) {
 export async function getUserCards(id:number) {
 
     const cards = await cardRepository.getUserCards(id)
+    cards.forEach(async card=>{card.password = await decrypt(card.password)})
+
     return cards
 }
 
 export async function getCard(cardId:number,id:number) {
 
-    const cards = await cardRepository.getCard(cardId, id)
-    if(!cards)throw{type:404,message:"This card does not exist!"}
-    return cards
+    const card = await cardRepository.getCard(cardId, id)
+    if(!card)throw{type:404,message:"This card does not exist!"}
+    card.password = await decrypt(card.password)
+    return card
 }
 
 export async function deleteCard(id:number, userId:number) {
