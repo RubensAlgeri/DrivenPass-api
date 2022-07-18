@@ -1,6 +1,7 @@
 {
   "name": "projeto19-drivenpass",
   "version": "1.0.0",
+  "type": "module",
   "description": "<p align=\"center\">   <a href=\"https://github.com/$username-github/$nome-repositorio\">     <img src=\"./readme.png\" alt=\"readme-logo\" width=\"80\" height=\"80\">   </a>",
   "main": "index.js",
   "scripts": {
