@@ -27,5 +27,11 @@ export async function getUserCards(id:number) {
 export async function getCard(cardId:number,id:number) {
 
     const cards = await cardRepository.getCard(cardId, id)
+    if(!cards)throw{type:404,message:"This card does not exist!"}
     return cards
+}
+
+export async function deleteCard(id:number) {
+
+    await cardRepository.deleteCard(id)
 }
