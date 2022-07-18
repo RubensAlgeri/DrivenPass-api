@@ -8,6 +8,6 @@ import * as schema from "../schemas/cardSchema.js";
 const cardRouter = Router();
 cardRouter.post("/card/:id",validateToken ,schemaValidator(schema.cardSchema), controller.createCard)
 cardRouter.get('/card/:id', validateToken, controller.getUserCards)
-cardRouter.delete('/card/:id', validateToken, controller.deleteCard)
+cardRouter.delete('/card/:id/:userId', validateToken, controller.deleteCard)
 
 export default cardRouter;

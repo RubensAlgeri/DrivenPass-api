@@ -31,7 +31,9 @@ export async function getCard(cardId:number,id:number) {
     return cards
 }
 
-export async function deleteCard(id:number) {
+export async function deleteCard(id:number, userId:number) {
 
+    const card = await cardRepository.getCard(id, userId);
+    if(!card)throw{type:404, message:"This card does not exist!"}
     await cardRepository.deleteCard(id)
 }

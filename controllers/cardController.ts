@@ -25,8 +25,9 @@ export async function getUserCards(req:Request, res:Response) {
 
 export async function deleteCard(req:Request, res:Response){
     const id = +req.params.id;
+    const userId = +req.params.userId;
 
-    await cardService.deleteCard(id)
+    await cardService.deleteCard(id, userId)
 
     res.sendStatus(200)
 }
